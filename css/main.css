@@ -1,0 +1,48 @@
+body {
+    font-family: "Calibri", sans-serif;
+    margin: 0px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#navWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+    box-shadow: 0 5px rgba(197, 123, 212, 0.7);
+    background: rgb(236, 209, 255);
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#navBar {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px;
+}
+
+.navBar {
+    display: inline;
+}
+
+.navBar a {
+    padding: 10px;
+    color: black;
+    text-decoration: none;
+}
+
+.navBar a:hover {
+    background: rgb(185, 107, 241);
+}
+
+main {
+    margin: 10px;
+    margin-top: 80px;
+}

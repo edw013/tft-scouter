@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>TFT Scouter</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/scouter.css" />
+    <script src="js/scouter.js"></script>
+</head>
+<body>
+    <header id="navWrapper">
+        <nav>
+            <ul id="navBar">
+                <li class="navBar"><a href="main.html">Home</a></li>
+                <li class="navBar"><a href="help.html">Help</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div id="control">
+            <label for="playerName">Name: </label><br />
+            <input type="text" id="playerName" name="name" required />
+            <button id="playerAddButton">Add</button>
+            <button id="resetButton">Reset</button>
+        </button>
+
+        <h2>Players</h2>
+        <ul id="players"></ul>
+
+        <h2>Available Pool</h2>
+        <ul id="available"></ul>
+
+        <h2>Unavailable Pool</h2>
+        <ul id="unavailable"></ul>
+    </main>
+
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {
+            let scouter = new Scouter()
+
+            document.getElementById("playerAddButton").addEventListener("click", () => {
+                const playerNameEl = document.getElementById("playerName")
+                if (!playerNameEl.checkValidity()) {
+                    playerNameEl.reportValidity()
+
+                    return
+                }
+
+                let pID = scouter.addPlayer(playerNameEl.value)
+                if (pID == -1) {
+                    return
+                }
+
+                const playerList = document.getElementById("players")
+                scouter.generatePlayerCard(pID)
+                scouter.generateAvailableList()
+            })
+
+            document.getElementById("resetButton").addEventListener("click", () => {
+                scouter.reset()
+                document.getElementById("players").innerHTML = ""
+                document.getElementById("available").innerHTML = ""
+                document.getElementById("unavailable").innerHTML = ""
+                document.getElementById("startButton").disabled = false
+            })
+        })
+    </script>
+</body>
+</html>
